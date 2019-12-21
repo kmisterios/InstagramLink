@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from firstapp import app
-from firstapp.forms import LinkForm
+from firstapp.forms import LinkForm, Button
 from firstapp.model_stuff.checking_string import do_things
 from firstapp.comments_parser import parseinst
 import json
@@ -18,9 +18,15 @@ output_data = []
 crawl_runner = CrawlerRunner()
 
 @app.route('/')
+def route():
+	return redirect('/home')
+
+@app.route('/home', methods=['GET', 'POST'])
 def home():
-	return redirect('/links')
-	
+	form = Button()
+	#if 'submit_button' in request.form:
+		#pass #return redirect('/links')
+	return render_template('home.html', title='Home', form=form)
 #def scrape():
     # run crawler in twisted reactor synchronously
     #scrape_with_crochet()
@@ -68,3 +74,5 @@ def index():
 		}
 	]
 	return render_template('index.html', title='Results', user=user, posts=posts)
+
+
