@@ -1,0 +1,18 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Statistix</title>
+      {% else %}
+      <title>Welcome to Statistix</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>
+            <b>Statistix:</b> 
+            <a href="/index">Home</a>
+            <a href="/links">Links</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
