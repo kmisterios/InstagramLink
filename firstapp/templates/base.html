@@ -8,11 +8,19 @@
     </head>
     <body>
         <div>
-            <a href="/home">Home</a>
-            <a href="/links">Links</a>
-            <body text='#000000' bgcolor='#90EE90'>
+            <a style="color: white"  href="/home">Home</a>
+            <a style="color: white"  href="/links">Links</a>
         </div>
         <hr>
         {% block content %}{% endblock %}
+        <style>
+        body {
+            background-image: url('https://en.instagram-brand.com/wp-content/uploads/2016/11/Glyph-Icon-hero.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: cover;
+        }
+        </style>
+        <body text='#FFFFFF'>
     </body>
 </html>

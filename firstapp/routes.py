@@ -35,7 +35,16 @@ def link():
 	if form.validate_on_submit():
 		scrape_with_crochet(form.link.data)
 		if (len(output_data) == ind) and (output_data[len(output_data)-1] != 'error'):
-			flash('Плохих комментариев {}'.format(do_things(parseinst(output_data[len(output_data)-1]['idstr']))))
+			answer_tuple = do_things(parseinst(output_data[len(output_data)-1]['idstr']))
+			flash('{} of toxic comments'.format(answer_tuple[0]))
+			if answer_tuple[1] == 1:
+				flash('{} toxic comment'.format(answer_tuple[1]))
+			else:
+				flash('{} toxic comments'.format(answer_tuple[1]))
+			if answer_tuple[2] == 1:
+				flash('{} normal comment'.format(answer_tuple[2]))
+			else:
+				flash('{} normal comments'.format(answer_tuple[2]))
 			return redirect('/index')
 		else:
 			flash('Incorrect input!')
@@ -50,7 +59,7 @@ def scrape_with_crochet(link):
     ind = len(output_data) + 1
     dispatcher.connect(_crawler_result, signal=signals.item_scraped)
     eventual = crawl_runner.crawl(QuotesSpider, link = link)#'https://www.instagram.com/p/B3rxYQ6IBWL/')
-    return eventual  # returns a twisted.internet.defer.Deferred
+    return eventual  
     
 def _crawler_result(item, response, spider):
 	#output_data = []
