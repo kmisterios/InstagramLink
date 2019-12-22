@@ -6,5 +6,3 @@ class LinkForm(FlaskForm):
     link = StringField('', validators=[DataRequired()])
     submit = SubmitField('GO')
 
-class Button(FlaskForm):
-    submit_button = SubmitField('START')

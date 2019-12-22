@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, flash, redirect, request
 from firstapp import app
-from firstapp.forms import LinkForm, Button
+from firstapp.forms import LinkForm
 from firstapp.model_stuff.checking_string import do_things
 from firstapp.comments_parser import parseinst
 import json
@@ -23,16 +23,11 @@ def route():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-	form = Button()
-	#if 'submit_button' in request.form:
-		#pass #return redirect('/links')
-	return render_template('home.html', title='Home', form=form)
-#def scrape():
-    # run crawler in twisted reactor synchronously
-    #scrape_with_crochet()
-    #print(output_data)
-    #return json.dumps([item for item in output_data])
+	return render_template('home.html', title='Home')
 
+@app.route('/go')
+def go():
+	return redirect('/links')
 
 @app.route('/links', methods=['GET', 'POST'])
 def link():
@@ -66,13 +61,7 @@ def _crawler_result(item, response, spider):
 	
 @app.route('/index')
 def index():
-	user = {'username': 'Лёха'}
-	posts = [
-		{
-			'author': {'username': 'Миша'},
-			'body': 'Я сделаль! :)'
-		}
-	]
-	return render_template('index.html', title='Results', user=user, posts=posts)
+
+	return render_template('index.html', title='Results')
 
 
