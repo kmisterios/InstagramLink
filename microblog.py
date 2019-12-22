@@ -1,3 +1,4 @@
 from firstapp import app
 
-app.run()
+#if you want to run with python3
+#app.run()
