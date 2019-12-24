@@ -2,7 +2,7 @@
 
 Website for checking quantity of toxic comments under Instagram publication.
 
-# Instalation
+# Installation
 
 Clone this repository 
 
