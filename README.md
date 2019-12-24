@@ -1,3 +1,15 @@
 # Instagram_link
 
-Simple website for checking quantity of toxic comments under Instagram publications.
+Website for checking quantity of toxic comments under Instagram publication.
+
+# Instalation
+
+Clone this repository 
+
+Install following modules: Flask, Flask-WTF, igramscraper and scrapy
+
+and run following commands in terminal in Instagram_link repository:
+```
+export FlASK_APP=microblog.py
+flask run
+```
