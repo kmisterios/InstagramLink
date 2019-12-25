@@ -45,6 +45,14 @@ def link():
 				flash('{} normal comment'.format(answer_tuple[2]))
 			else:
 				flash('{} normal comments'.format(answer_tuple[2]))
+			comments = 'Toxic comments: '
+			for comment in answer_tuple[3]:
+				comments += '\'' + comment + '\', '
+				if len(comments) > 90:
+					flash(comments[:-2] + ',')
+					comments = ''
+			flash(comments[:-2] + '.')
+			
 			return redirect('/index')
 		else:
 			flash('Incorrect input!')

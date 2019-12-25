@@ -70,17 +70,24 @@ def computeTFIDFVector(review):
 
 
 def do_things(lines):
-    if len(lines) == 0:
-        return str(0) + '%', 0, 0
-    processed_lines = [comments_preprocessing(line) for line in lines]
-    tfDict_test = [computeReviewTFDict(review) for review in processed_lines]
-    tfidfDict_test = [computeReviewTFIDFDict(review) for review in tfDict_test]
-    tfidfVector_test = [computeTFIDFVector(review) for review in tfidfDict_test]
-    result = loaded_model.predict(tfidfVector_test)
-    result = np.array(result)
-    print(result)
-    if (result.sum()* 100) % len(result) != 0:
-        return str(round(result.sum()/len(result)*100, 1)) + '%', result.sum(), len(result) -result.sum()
-    else:
-        return str(int(round(result.sum()/len(result)*100))) + '%', result.sum(), len(result) -result.sum()
+	abusive_comments = []
+	if len(lines) == 0:
+		return str(0) + '%', 0, 0, abusive_comments
+	processed_lines = [comments_preprocessing(line) for line in lines]
+	tfDict_test = [computeReviewTFDict(review) for review in processed_lines]
+	tfidfDict_test = [computeReviewTFIDFDict(review) for review in tfDict_test]
+	tfidfVector_test = [computeTFIDFVector(review) for review in tfidfDict_test]
+	result = loaded_model.predict(tfidfVector_test)
+	result = np.array(result)
+	ind = 0
+	for i, r in enumerate(result):
+		if ind > 10:
+			break
+		if result[i] == 1:
+			ind += 1
+			abusive_comments.append(lines[i])
+	if (result.sum()* 100) % len(result) != 0:
+		return str(round(result.sum()/len(result)*100, 1)) + '%', result.sum(), len(result) -result.sum(), abusive_comments
+	else:
+		return str(int(round(result.sum()/len(result)*100))) + '%', result.sum(), len(result) -result.sum(), abusive_comments
         

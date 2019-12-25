@@ -11,10 +11,8 @@ def parseinst(idstr):
 	idstr = idstr[ind:]
 		
 	instagram = Instagram()
-	instagram.with_credentials('grouchysalmon', 'ulofob37', '')
-	instagram.login()
 	
-	comments = instagram.get_media_comments_by_id(idstr, 10000)
+	comments = instagram.get_media_comments_by_id(idstr, 1000)
 	k = 0
 	comments_list = []
 	for comment in comments['comments']:
