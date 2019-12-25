@@ -1,6 +1,5 @@
 <html>
     <head>
-      <link rel="icon" href="https://sun9-71.userapi.com/c855632/v855632276/1af422/_9POVZPW5Z0.jpg">
       {% if title %}
       <title>{{ title }} - InstaLink</title>
       {% else %}
@@ -16,7 +15,7 @@
         {% block content %}{% endblock %}
         <style>
         body {
-            background-image: url('https://en.instagram-brand.com/wp-content/uploads/2016/11/Glyph-Icon-hero.png');
+            background-image: url({{ url_for('static', filename='background.png') }});
             background-repeat: no-repeat;
             background-attachment: fixed; 
             background-size: cover;
